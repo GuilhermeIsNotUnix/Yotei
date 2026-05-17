@@ -1,9 +1,17 @@
+import 'package:yotei/platform/platform_detector.dart';
+
+const debug = true;
+
 class CliInterface {
     final List<String> arguments;
 
     CliInterface(this.arguments);
 
     void run() {
+        if(debug == true) {
+            print('$arguments');
+        }
+
         if(arguments.isEmpty) {
             print('yotei error: no argument passed.');
             printUsage();
@@ -17,6 +25,7 @@ class CliInterface {
                 case 'status':
                     break;
                 case 'shutdown':
+                    handleOperatingSystemDetection();
                     break;
                 case 'cancel':
                     break;
@@ -38,11 +47,24 @@ class CliInterface {
         print('\tShows Yotei\'s usage and features.');
     }
 
-    void calldetectOS() {
-        // Chama código de platform/ que de fato irá detectar o OS (não faz a detecção em si)
+    void handleOperatingSystemDetection() {
+        final detector = PlatformDetector();
+        final os = detector.detectOperatingSystem();
+
+        switch(os) {
+            case OperatingSystem.linux:
+                print('Running Linux');
+                break;
+            case OperatingSystem.windows:
+                print('Running Windows');
+                break;
+            case OperatingSystem.macOS:
+                print('Running MacOS');
+                break;
+        }
     }
 
-    void callShutdown(int seconds) {
+    void handleShutdownCommand(int seconds) {
         // Chama código de platform/ que de fato irá desligar o OS (não faz o desligamento em si)
     }
 }
