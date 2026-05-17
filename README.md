@@ -1,2 +1,1 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Yotei is a shutdown scheduler utility cross-platform software made in Dart language, currently being developed. Yotei is licensed under the Apache-2.0 license, please read it carefully. 
