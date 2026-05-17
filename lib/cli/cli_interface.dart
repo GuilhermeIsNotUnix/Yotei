@@ -1,4 +1,5 @@
 import 'package:yotei/platform/platform_detector.dart';
+import 'package:yotei/core/time_parser.dart';
 
 const debug = true;
 
@@ -25,7 +26,8 @@ class CliInterface {
                 case 'status':
                     break;
                 case 'shutdown':
-                    handleOperatingSystemDetection();
+                    //handleOperatingSystemDetection();
+                    handleShutdownCommand();
                     break;
                 case 'cancel':
                     break;
@@ -64,7 +66,12 @@ class CliInterface {
         }
     }
 
-    void handleShutdownCommand(int seconds) {
-        // Chama código de platform/ que de fato irá desligar o OS (não faz o desligamento em si)
+    void handleShutdownCommand() {
+        if(arguments.length > 1) {
+            final parsedTime = TimeParser.parseTime(arguments[1]);
+            print('Scheduling shutdown at $parsedTime');
+        } else {
+            throw ArgumentError('yotei error: Missing time argument.');
+        }
     }
 }
