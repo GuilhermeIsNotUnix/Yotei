@@ -38,11 +38,11 @@ class CliInterface {
         print('\tShows Yotei\'s usage and features.');
     }
 
-    void detectOS() {
+    void calldetectOS() {
         // Chama código de platform/ que de fato irá detectar o OS (não faz a detecção em si)
     }
 
-    void shutdown(int seconds) {
+    void callShutdown(int seconds) {
         // Chama código de platform/ que de fato irá desligar o OS (não faz o desligamento em si)
     }
 }
