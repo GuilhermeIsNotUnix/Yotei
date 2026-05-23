@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class LinuxShutdownService {
     Future<void> scheduleShutdown(DateTime targetTime) async {
         final hours = targetTime.hour.toString().padLeft(2, '0');
