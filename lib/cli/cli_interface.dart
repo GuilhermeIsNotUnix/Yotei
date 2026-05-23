@@ -21,25 +21,29 @@ class CliInterface {
         final command = arguments.first;
         final manager = ShutdownManager();
 
-        switch(command) {
-            case 'help':
-                printUsage();
-                break;
-            case 'status':
-                break;
-            case 'shutdown':
-                checkTimeArgument();
-                manager.scheduleShutdown(arguments[1]);
-                break;
-            case 'now':
-                manager.shutdownNow();                    
-                break;
-            case 'cancel':
-                manager.cancelShutdown();
-                break;
-            default:
-                print('yotei error: No valid command was provided as an argument.');
-                break;
+        try {
+            switch(command) {
+                case 'help':
+                    printUsage();
+                    break;
+                case 'status':
+                    break;
+                case 'shutdown':
+                    checkTimeArgument();
+                    await manager.scheduleShutdown(arguments[1]);
+                    break;
+                case 'now':
+                    await manager.shutdownNow();                    
+                    break;
+                case 'cancel':
+                    await manager.cancelShutdown();
+                    break;
+                default:
+                    print('yotei error: No valid command was provided as an argument.');
+                    break;
+            }
+        } catch(e) {
+            print("yotei error: $e");
         }
     }
 
