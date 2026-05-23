@@ -7,7 +7,7 @@ class CliInterface {
 
     CliInterface(this.arguments);
 
-    void run() async {
+    Future<void> run() async {
         if(debug == true) {
             print('$arguments');
         }
