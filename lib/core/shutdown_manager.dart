@@ -73,13 +73,4 @@ class ShutdownManager {
 
         return os;
     }
-
-    /* void handleShutdownCommand() {
-        if(arguments.length > 1) {
-            final parsedTime = TimeParser.parseTime(arguments[1]);
-            print('Scheduling shutdown at $parsedTime');
-        } else {
-            throw ArgumentError('yotei error: Missing time argument.');
-        }
-    } */
 }
