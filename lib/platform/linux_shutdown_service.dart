@@ -8,7 +8,7 @@ class LinuxShutdownService {
         final process = await Process.run("shutdown", ["-h", "$hours:$minutes"]);
 
         if(process.exitCode != 0) {
-            throw Exception("yotei error: ${process.stderr}");
+            throw Exception("${process.stderr}");
         }
 
         if(debugMode) {
@@ -22,7 +22,7 @@ class LinuxShutdownService {
         final process = await Process.run("shutdown", ["-h", "now"]);
 
         if(process.exitCode != 0) {
-            throw Exception("yotei error: ${process.stderr}");
+            throw Exception("${process.stderr}");
         }
 
         if(debugMode) {
@@ -36,7 +36,7 @@ class LinuxShutdownService {
         final process = await Process.run("shutdown", ["-c"]);
 
         if(process.exitCode != 0) {
-            throw Exception("yotei error: ${process.stderr}");
+            throw Exception("${process.stderr}");
         }
 
         if(debugMode) {
@@ -50,7 +50,7 @@ class LinuxShutdownService {
         final process = await Process.run("echo", [message]);
 
         if(process.exitCode != 0) {
-            throw Exception("yotei error: ${process.stderr}");
+            throw Exception("${process.stderr}");
         }
 
         if(debugMode) {
