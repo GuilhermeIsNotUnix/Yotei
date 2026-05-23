@@ -14,17 +14,18 @@ class LinuxShutdownService {
     }
 
     Future<void> shutdownNow(bool debugMode) async {
-        if(!debugMode) {
-            final process = await Process.run("shutdown", ["-h", "now"]);
-
-            print("Exit code: ${process.exitCode}");
-            print("Output:\n${process.stdout}");
-
-            if(process.stderr.isNotEmpty) {
-                print("Errors:${process.stderr}\n");
-            }
-        } else {
+        if(debugMode) {
             print("yotei debug mode:\n\n Command set to be executed: shutdown -h now");
+            return;
+        }
+
+        final process = await Process.run("shutdown", ["-h", "now"]);
+
+        print("Exit code: ${process.exitCode}");
+        print("Output:\n${process.stdout}");
+
+        if(process.stderr.isNotEmpty) {
+            print("Errors:${process.stderr}\n");
         }
     }
 
