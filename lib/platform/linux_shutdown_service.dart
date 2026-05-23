@@ -1,24 +1,15 @@
 class LinuxShutdownService {
     Future<void> scheduleShutdown(DateTime targetTime) async {
-        if(targetTime.minute < 10) {
-            final minutes = targetTime.minute.toString().padLeft(2, '0');
-            final process = await Process.run("shutdown", ["-h", "${targetTime.hour}:$minutes"]);
+        final hours = targetTime.hour.toString().padLeft(2, '0');
+        final minutes = targetTime.minute.toString().padLeft(2, '0');
+        
+        final process = await Process.run("shutdown", ["-h", "$hours:$minutes"]);
 
-            print("Exit code: ${process.exitCode}");
-            print("Output:\n${process.stdout}");
+        print("Exit code: ${process.exitCode}");
+        print("Output:\n${process.stdout}");
 
-            if(process.stderr.isNotEmpty) {
-                print("Errors:${process.stderr}\n");
-            }
-        } else {
-            final process = await Process.run("shutdown", ["-h", "${targetTime.hour}:${targetTime.minute}"]);
-
-            print("Exit code: ${process.exitCode}");
-            print("Output:\n${process.stdout}");
-
-            if(process.stderr.isNotEmpty) {
-                print("Errors:${process.stderr}\n");
-            }
+        if(process.stderr.isNotEmpty) {
+            print("Errors:${process.stderr}\n");
         }
     }
 
