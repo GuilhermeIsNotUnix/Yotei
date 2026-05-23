@@ -1,5 +1,4 @@
-import 'package:yotei/platform/platform_detector.dart';
-import 'package:yotei/core/time_parser.dart';
+import 'package:yotei/core/shutdown_manager.dart';
 
 const debug = true;
 
@@ -18,6 +17,7 @@ class CliInterface {
             printUsage();
         } else {
             final command = arguments.first;
+            final manager = ShutdownManager();
 
             switch(command) {
                 case 'help':
@@ -26,10 +26,14 @@ class CliInterface {
                 case 'status':
                     break;
                 case 'shutdown':
-                    //handleOperatingSystemDetection();
-                    handleShutdownCommand();
+                    checkTimeArgument();
+                    manager.scheduleShutdown(arguments[1]);
+                    break;
+                case 'now':
+                    manager.shutdownNow();                    
                     break;
                 case 'cancel':
+                    manager.cancelShutdown();
                     break;
                 default:
                     print('yotei error: No valid command was provided as an argument.');
@@ -41,6 +45,8 @@ class CliInterface {
     void printUsage() {
         print('yotei shutdown HH:MM');
         print('\tSchedule the system to shut down at the time HH:MM specified as an argument.');
+        print('yotei now');
+        print('\tA signal is sent to shut down the system now.');
         print('yotei status');
         print('\tShows whether any appointments have been scheduled.');
         print('yotei cancel');
@@ -49,28 +55,8 @@ class CliInterface {
         print('\tShows Yotei\'s usage and features.');
     }
 
-    void handleOperatingSystemDetection() {
-        final detector = PlatformDetector();
-        final os = detector.detectOperatingSystem();
-
-        switch(os) {
-            case OperatingSystem.linux:
-                print('Running Linux');
-                break;
-            case OperatingSystem.windows:
-                print('Running Windows');
-                break;
-            case OperatingSystem.macOS:
-                print('Running MacOS');
-                break;
-        }
-    }
-
-    void handleShutdownCommand() {
-        if(arguments.length > 1) {
-            final parsedTime = TimeParser.parseTime(arguments[1]);
-            print('Scheduling shutdown at $parsedTime');
-        } else {
+    void checkTimeArgument() {
+        if(arguments.length <= 1) {
             throw ArgumentError('yotei error: Missing time argument.');
         }
     }
