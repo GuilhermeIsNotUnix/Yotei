@@ -1,7 +1,7 @@
 name: yotei
-description: A sample command-line application.
-version: 0.1.0
-# repository: https://github.com/my_org/my_repo
+description: Yotei is a shutdown scheduler utility cross-platform software made in Dart language, currently experimental. Yotei is licensed under the Apache-2.0 license, please read it carefully.
+version: 0.4.0
+repository: https://github.com/GuilhermeIsNotUnix/Yotei
 
 environment:
   sdk: ^3.11.6
