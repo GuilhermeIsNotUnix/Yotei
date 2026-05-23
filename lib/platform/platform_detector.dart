@@ -15,7 +15,7 @@ class PlatformDetector {
         } else if (Platform.isMacOS) {
             return OperatingSystem.macOS;
         } else {
-            throw UnsupportedError('yotei error: Platform not supported.');
+            throw UnsupportedError('Platform not supported.');
         }
     }
 }
