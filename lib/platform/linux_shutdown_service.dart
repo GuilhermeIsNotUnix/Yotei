@@ -29,6 +29,22 @@ class LinuxShutdownService {
         }
     }
 
+    Future<void> cancelShutdown(bool debugMode) async {
+        if(debugMode) {
+            print("yotei debug mode:\n\n Command set to be executed: shutdown -c");
+            return;
+        }
+
+        final process = await Process.run("shutdown", ["-c"]);
+
+        print("Exit code: ${process.exitCode}");
+        print("Output:\n${process.stdout}");
+
+        if(process.stderr.isNotEmpty) {
+            print("Errors:${process.stderr}\n");
+        }
+    }
+
     Future<void> testEchoCommand(String message) async {
         final process = await Process.run("echo", [message]);
 
