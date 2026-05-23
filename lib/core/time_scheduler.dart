@@ -1,5 +1,5 @@
 class TimeScheduler {
-    DateTime constructDateTime(List<int> givenTime) {
+    static DateTime constructDateTime(List<int> givenTime) {
         final now = DateTime.now();
 
         var targetTime = DateTime(
