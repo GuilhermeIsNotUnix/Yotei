@@ -16,7 +16,8 @@ class ShutdownManager {
                 
                 break;
             case OperatingSystem.windows:
-                //...
+                final service = WindowsShutdownService();
+                await service.scheduleShutdown(targetTime, debugMode);
                 
                 break;
             case OperatingSystem.macOS:
@@ -38,7 +39,8 @@ class ShutdownManager {
 
                 break;
             case OperatingSystem.windows:
-                //...
+                final service = WindowsShutdownService();
+                await service.scheduleShutdown(debugMode);
                 
                 break;
             case OperatingSystem.macOS:
@@ -58,7 +60,8 @@ class ShutdownManager {
 
                 break;
             case OperatingSystem.windows:
-                //...
+                final service = WindowsShutdownService();
+                await service.scheduleShutdown(debugMode);
                 
                 break;
             case OperatingSystem.macOS:
