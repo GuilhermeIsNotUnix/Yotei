@@ -30,8 +30,11 @@ class CliInterface {
                     break;
                 case 'shutdown':
                     checkTimeArgument();
-                    await manager.scheduleShutdown(arguments[1], debugMode);
-                    print("yotei: Scheduled to shut down at ${arguments[1]}...");
+                    final targetTime = await manager.scheduleShutdown(arguments[1], debugMode);
+                    final hours = targetTime.hour.toString().padLeft(2, '0');
+                    final minutes = targetTime.minute.toString().padLeft(2, '0');
+                    
+                    print("yotei: Scheduled to shut down at $hours:$minutes...");
                     break;
                 case 'now':
                     await manager.shutdownNow(debugMode);
