@@ -22,7 +22,8 @@ class ShutdownManager {
                 
                 break;
             case OperatingSystem.macOS:
-                //...
+                final service = MacOSShutdownService();
+                await service.scheduleShutdown(targetTime, debugMode);
                 
                 break;
         }
@@ -45,7 +46,8 @@ class ShutdownManager {
                 
                 break;
             case OperatingSystem.macOS:
-                //...
+                final service = MacOSShutdownService();
+                await service.shutdownNow(debugMode);
                 
                 break;
         }
@@ -66,7 +68,8 @@ class ShutdownManager {
                 
                 break;
             case OperatingSystem.macOS:
-                //...
+                final service = MacOSShutdownService();
+                await service.cancelShutdown(debugMode);
                 
                 break;
         }
