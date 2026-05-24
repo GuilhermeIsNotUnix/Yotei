@@ -1,10 +1,10 @@
 # Yotei (予定)
 
 <p align="center">
-  <img src="lib/assets/icons/Yotei.svg" width=30% heigth=30% alt="Yotei logo, Guilherme Faura (GuilhermeIsNotUnix)">
+  <img src="lib/assets/icons/Yotei.svg" width=30% heigth=30% alt="Yotei's logo, Guilherme Faura (GuilhermeIsNotUnix)">
 </p>
 
-<p align="center">Yotei logo, Guilherme Faura (GuilhermeIsNotUnix)</p>
+<p align="center">Yotei's logo, Guilherme Faura (GuilhermeIsNotUnix)</p>
 
 <br>
 
