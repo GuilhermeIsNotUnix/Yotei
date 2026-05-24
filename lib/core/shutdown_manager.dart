@@ -2,6 +2,7 @@ import 'package:yotei/core/time_parser.dart';
 import 'package:yotei/core/time_scheduler.dart';
 import 'package:yotei/platform/platform_detector.dart';
 import 'package:yotei/platform/linux_shutdown_service.dart';
+import 'package:yotei/platform/windows_shutdown_service.dart';
 
 class ShutdownManager {
     Future<DateTime> scheduleShutdown(String givenTime, bool debugMode) async {
@@ -40,7 +41,7 @@ class ShutdownManager {
                 break;
             case OperatingSystem.windows:
                 final service = WindowsShutdownService();
-                await service.scheduleShutdown(debugMode);
+                await service.shutdownNow(debugMode);
                 
                 break;
             case OperatingSystem.macOS:
@@ -61,7 +62,7 @@ class ShutdownManager {
                 break;
             case OperatingSystem.windows:
                 final service = WindowsShutdownService();
-                await service.scheduleShutdown(debugMode);
+                await service.cancelShutdown(debugMode);
                 
                 break;
             case OperatingSystem.macOS:
