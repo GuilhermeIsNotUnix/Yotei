@@ -1,5 +1,13 @@
 # Yotei (予定)
 
+<p align="center">
+  <img src="lib/assets/icons/Yotei.svg" width=40% heigth=40% alt="Yotei logo, Guilherme Faura (GuilhermeIsNotUnix)">
+</p>
+
+<p align="center">Yotei logo, Guilherme Faura (GuilhermeIsNotUnix)</p>
+
+<br>
+
 Yotei is a cross-platform shutdown scheduler utility written in Dart, currently under active development. Yotei is developed by *Guilherme Faura (GuilhermeIsNotUnix)*.
 
 The project aims to provide a lightweight, reliable and extensible solution for scheduling system shutdown operations across Linux, Windows and macOS environments through both CLI and future GUI interfaces.
