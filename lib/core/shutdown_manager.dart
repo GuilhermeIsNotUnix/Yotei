@@ -4,7 +4,7 @@ import 'package:yotei/platform/platform_detector.dart';
 import 'package:yotei/platform/linux_shutdown_service.dart';
 
 class ShutdownManager {
-    Future<void> scheduleShutdown(String givenTime, bool debugMode) async {
+    Future<DateTime> scheduleShutdown(String givenTime, bool debugMode) async {
         final os = getOperatingSystem();
         final parsedTime = TimeParser.parseTime(givenTime);
         final targetTime = TimeScheduler.constructDateTime(parsedTime);
@@ -13,7 +13,7 @@ class ShutdownManager {
             case OperatingSystem.linux:
                 final service = LinuxShutdownService();
                 await service.scheduleShutdown(targetTime, debugMode);
-
+                
                 break;
             case OperatingSystem.windows:
                 //...
@@ -24,6 +24,8 @@ class ShutdownManager {
                 
                 break;
         }
+
+        return targetTime;
     }
 
     Future<void> shutdownNow(bool debugMode) async {
