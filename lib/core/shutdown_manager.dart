@@ -3,6 +3,7 @@ import 'package:yotei/core/time_scheduler.dart';
 import 'package:yotei/platform/platform_detector.dart';
 import 'package:yotei/platform/linux_shutdown_service.dart';
 import 'package:yotei/platform/windows_shutdown_service.dart';
+import 'package:yotei/platform/macos_shutdown_service.dart';
 
 class ShutdownManager {
     Future<DateTime> scheduleShutdown(String givenTime, bool debugMode) async {
