@@ -3,10 +3,8 @@ import 'package:yotei/core/time_scheduler.dart';
 import 'package:yotei/platform/platform_detector.dart';
 import 'package:yotei/platform/linux_shutdown_service.dart';
 
-const debugMode = true;
-
 class ShutdownManager {
-    Future<void> scheduleShutdown(String givenTime) async {
+    Future<void> scheduleShutdown(String givenTime, bool debugMode) async {
         final os = getOperatingSystem();
         final parsedTime = TimeParser.parseTime(givenTime);
         final targetTime = TimeScheduler.constructDateTime(parsedTime);
@@ -28,7 +26,7 @@ class ShutdownManager {
         }
     }
 
-    Future<void> shutdownNow() async {
+    Future<void> shutdownNow(bool debugMode) async {
         final os = getOperatingSystem();
 
         switch(os) {
@@ -48,7 +46,7 @@ class ShutdownManager {
         }
     }
 
-    Future<void> cancelShutdown() async {
+    Future<void> cancelShutdown(bool debugMode) async {
         final os = getOperatingSystem();
 
         switch(os) {
