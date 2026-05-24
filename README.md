@@ -1,6 +1,6 @@
 # Yotei
 
-Yotei is a cross-platform shutdown scheduler utility written in Dart, currently under active development.
+Yotei is a cross-platform shutdown scheduler utility written in Dart, currently under active development. Yotei is developed by *Guilherme Faura (GuilhermeIsNotUnix)*.
 
 The project aims to provide a lightweight, reliable and extensible solution for scheduling system shutdown operations across Linux, Windows and macOS environments through both CLI and future GUI interfaces.
 
@@ -8,13 +8,11 @@ Yotei is licensed under the Apache-2.0 License.
 
 ---
 
-# About the Name
+# Why the name "Yotei"?
 
 The name **Yotei (予定)** comes from Japanese and means:
 
-* schedule
-* plan
-* arrangement
+*schedule / plan / arrangement*
 
 The name reflects the main purpose of the software: planning and automating system shutdown operations in a clean and predictable way.
 
@@ -22,7 +20,7 @@ The name reflects the main purpose of the software: planning and automating syst
 
 # Project Background
 
-Yotei is also a spiritual successor and complete rewrite of an older personal project of mine called **Gambit** (https://github.com/GuilhermeIsNotUnix/Gambit), originally written in Go.
+Yotei is also a spiritual successor and complete rewrite of an older personal project of mine called **Gambit** (archived at: https://github.com/GuilhermeIsNotUnix/Gambit), originally written in Go.
 
 Gambit was a simple shutdown utility focused only on Windows systems. Although functional, the project lacked proper software architecture and separation of concerns, not to mention that Gambit didn't support asynchronous operations. The GUI layer and business logic were tightly coupled, the codebase was monolithic, and the project was built before acquiring deeper knowledge in software engineering and system architecture.
 
@@ -36,7 +34,7 @@ Yotei was created as a new implementation designed from the ground up with:
 * scalable project organization
 * cross-platform support
 
-The project represents a significant technical evolution compared to the original Gambit codebase.
+The project represents a significant technical advancement in terms of software engineering compared to Gambit's original codebase, and also demonstrates the author's experience and professional growth as a software engineer.
 
 ---
 
@@ -83,14 +81,19 @@ yotei cancel
 
 The project is organized into independent layers with clear responsibilities.
 
-## Current Architecture
+## Execution Flow
 
 ```text
-CLI
- └── ShutdownManager
-      ├── TimeParser
-      ├── TimeScheduler
-      └── Platform Services
+User Input
+    │
+    ▼
+CliInterface
+    │
+    ▼
+ShutdownManager
+    ├── Parses and validates time input
+    ├── Builds target DateTime
+    └── Delegates execution to platform-specific services
             ├── LinuxShutdownService
             ├── WindowsShutdownService
             └── MacOSShutdownService
