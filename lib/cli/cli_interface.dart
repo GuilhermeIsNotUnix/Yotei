@@ -1,6 +1,6 @@
 import 'package:yotei/core/shutdown_manager.dart';
 
-const debug = true;
+const debugMode = false;
 
 class CliInterface {
     final List<String> arguments;
@@ -8,12 +8,12 @@ class CliInterface {
     CliInterface(this.arguments);
 
     Future<void> run() async {
-        if(debug == true) {
+        if(debugMode) {
             print('$arguments');
         }
 
         if(arguments.isEmpty) {
-            print('yotei error: no argument passed.');
+            print('yotei error: no arguments passed.\n');
             printUsage();
             return;
         }
@@ -30,13 +30,16 @@ class CliInterface {
                     break;
                 case 'shutdown':
                     checkTimeArgument();
-                    await manager.scheduleShutdown(arguments[1]);
+                    await manager.scheduleShutdown(arguments[1], debugMode);
+                    print("yotei: Scheduled to shut down at ${arguments[1]}...");
                     break;
                 case 'now':
-                    await manager.shutdownNow();                    
+                    await manager.shutdownNow(debugMode);
+                    print("yotei: Shutting down now...");
                     break;
                 case 'cancel':
-                    await manager.cancelShutdown();
+                    await manager.cancelShutdown(debugMode);
+                    print("yotei: Any scheduled shutdown have been canceled.");
                     break;
                 default:
                     print('yotei error: No valid command was provided as an argument.');
@@ -62,7 +65,7 @@ class CliInterface {
 
     void checkTimeArgument() {
         if(arguments.length <= 1) {
-            throw ArgumentError('yotei error: Missing time argument.');
+            throw ArgumentError('Missing time argument.');
         }
     }
 }
