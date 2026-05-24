@@ -23,7 +23,7 @@ class TimeScheduler {
         return targetTime;
     }
 
-    Duration calculateRemainingTime(DateTime targetTime) {
+    static Duration calculateRemainingTime(DateTime targetTime) {
         final now = DateTime.now();
 
         return targetTime.difference(now);
