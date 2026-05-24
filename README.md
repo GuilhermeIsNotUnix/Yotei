@@ -1,4 +1,4 @@
-# Yotei
+# Yotei (予定)
 
 Yotei is a cross-platform shutdown scheduler utility written in Dart, currently under active development. Yotei is developed by *Guilherme Faura (GuilhermeIsNotUnix)*.
 
